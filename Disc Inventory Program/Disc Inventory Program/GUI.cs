@@ -24,6 +24,7 @@ namespace Disc_Inventory_Program
 		ExcelXmlWorkbook workBook;
 		Worksheet sheet;
 		int count = 0;
+        int sheetCount = 0;
 		
         public GUI()
         {
@@ -38,6 +39,7 @@ namespace Disc_Inventory_Program
 				folderDialog.Description = "Set Folder to Inventory";
 				folderDialog.ShowDialog();
 				onDeck = new DirectoryInfo(folderDialog.SelectedPath);
+                sheetCount = 0;
 				textBoxFileName.Enabled = true;
 				textBoxFileName.Visible = true;
 				buttonSelectFileDirectory.Enabled = true;
@@ -64,11 +66,11 @@ namespace Disc_Inventory_Program
 				folderDialog.ShowDialog();
 				workBook = new ExcelXmlWorkbook();
 				workBook.Properties.Author = Environment.UserName;
-				sheet = workBook[0];
-				sheet.Name = textBoxFileName.Text;
 				writer = File.OpenWrite(folderDialog.SelectedPath + "\\" + textBoxFileName.Text + ".xml");
-				buttonStartInventory.Enabled = true;
-				buttonStartInventory.Visible = true;
+                textBoxWorkSheetName.Enabled = true;
+                textBoxWorkSheetName.Visible = true;
+                buttonNameWorksheet.Enabled = true;
+                buttonNameWorksheet.Visible = true;
 				buttonSelectFileDirectory.Enabled = false;
 				buttonSelectFileDirectory.Visible = false;
 				textBoxFileName.Enabled = false;
@@ -108,9 +110,12 @@ namespace Disc_Inventory_Program
 				textboxOutput.AppendText("\n");
 				textboxOutput.AppendText("Done. " + count + " Items Processed");
 				workBook.Export(writer);
-				buttonSelectInventoryDirectory.Enabled = true;
-				buttonSelectInventoryDirectory.Visible = true;
-				buttonStartInventory.Enabled = true;
+                
+                buttonRestart.Enabled = true;
+                buttonRestart.Visible = true;
+                buttonNewWorksheet.Enabled = true;
+                buttonNewWorksheet.Visible = true;
+				buttonStartInventory.Enabled = false;
 				buttonStartInventory.Visible = false;
 			}
 			catch(ArgumentNullException ex)
@@ -155,5 +160,41 @@ namespace Disc_Inventory_Program
 			textboxOutput.AppendText(file.FullName + "\n");
 			count++;
 		}
+
+        private void buttonNameWorksheet_Click(object sender, EventArgs e)
+        {
+            sheet = workBook[sheetCount];
+            sheet.Name = textBoxWorkSheetName.Text;
+            buttonStartInventory.Enabled = true;
+            buttonStartInventory.Visible = true;
+            textBoxWorkSheetName.Enabled = false;
+            textBoxWorkSheetName.Visible = false;
+            buttonNameWorksheet.Enabled = false;
+            buttonNameWorksheet.Visible = false;
+            sheetCount++;
+        }
+
+        private void buttonRestart_Click(object sender, EventArgs e)
+        {
+            writer.Close();
+            buttonSelectInventoryDirectory.Enabled = true;
+            buttonSelectInventoryDirectory.Visible = true;
+            buttonRestart.Enabled = false;
+            buttonRestart.Visible = false;
+            buttonNewWorksheet.Enabled = false;
+            buttonNewWorksheet.Visible = false;
+        }
+
+        private void buttonNewWorksheet_Click(object sender, EventArgs e)
+        {
+            buttonNameWorksheet.Enabled = true;
+            buttonNameWorksheet.Visible = true;
+            textBoxWorkSheetName.Enabled = true;
+            textBoxWorkSheetName.Visible = true;
+            buttonRestart.Enabled = false;
+            buttonRestart.Visible = false;
+            buttonNewWorksheet.Enabled = false;
+            buttonNewWorksheet.Visible = false;
+        }
     }
 }
