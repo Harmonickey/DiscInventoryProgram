@@ -28,3 +28,6 @@ C:\git\DiscInventoryProgram\Disc Inventory Program\Disc Inventory Program\bin\De
 C:\git\DiscInventoryProgram\Disc Inventory Program\Disc Inventory Program\obj\Debug\Disc_Inventory_Program.GUI.resources
 C:\git\DiscInventoryProgram\Disc Inventory Program\Disc Inventory Program\obj\Debug\Disc_Inventory_Program.Properties.Resources.resources
 C:\git\DiscInventoryProgram\Disc Inventory Program\Disc Inventory Program\obj\Debug\Disc Inventory Program.csproj.GenerateResource.Cache
+C:\Users\Alex\Documents\GitHub\DiscInventoryProgram\Disc Inventory Program\Disc Inventory Program\bin\Debug\Disc Inventory Program.exe.config
+C:\Users\Alex\Documents\GitHub\DiscInventoryProgram\Disc Inventory Program\Disc Inventory Program\obj\Debug\Disc Inventory Program.exe
+C:\Users\Alex\Documents\GitHub\DiscInventoryProgram\Disc Inventory Program\Disc Inventory Program\obj\Debug\Disc Inventory Program.pdb
